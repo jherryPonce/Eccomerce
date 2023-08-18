@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-        $role = Role::create(['name' => 'admin']); 
+        // $role = Role::create(['name' => 'admin']); 
 
          User::create([
             'name'=>'Jherry Ponce Graos',
@@ -25,18 +25,18 @@ class UserSeeder extends Seeder
             'password'=>bcrypt('75959881') 
         ]); 
 
-        User::create([
-            'name'=>'Jherry Ponce Graos',
-            'Dni'=>'47349982',
-            'email'=>'jherry_libra23@hotmail.com',
-            'password'=>bcrypt('75959881') 
-        ])->assignRole('admin');
+        // User::create([
+        //     'name'=>'Jherry Ponce Graos',
+        //     'Dni'=>'47349982',
+        //     'email'=>'jherry_libra23@hotmail.com',
+        //     'password'=>bcrypt('75959881') 
+        // ])->assignRole('admin');
 
-        User::create([
-            'name'=>'Diana Orozco Graos',
-            'Dni'=>'12345678',
-            'email'=>'lissi_2607@hotmail.com',
-            'password'=>bcrypt('75959881') 
-        ])->assignRole('admin');
+        // User::create([
+        //     'name'=>'Diana Orozco Graos',
+        //     'Dni'=>'12345678',
+        //     'email'=>'lissi_2607@hotmail.com',
+        //     'password'=>bcrypt('75959881') 
+        // ])->assignRole('admin');
     }
 }
