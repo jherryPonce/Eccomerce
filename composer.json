@@ -13,9 +13,6 @@
         "spatie/laravel-permission": "^5.10"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.9"
-    },
-    "require-dev": {
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",
@@ -64,6 +61,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
