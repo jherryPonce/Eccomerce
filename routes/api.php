@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\CnfProductos\CnfProductsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function () {
+    return 'api';
 });
+Route::get('/home', function () {
+    return 'home';
+});
+
+Route::get('/product', [CnfProductsController::class , 'index'])->name('producto.list');
+
+Route::post('/product', [CnfProductsController::class , 'store'])->name('producto.create');
+
+// Route::prefix('admin')->group(function () {
+//     return 'entra';
+//     Route::post('/products', [CnfProductsController::class, 'store']);
+//     // Otras rutas para productos en el grupo
+// });

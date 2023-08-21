@@ -33,7 +33,7 @@ class CreateProductsTable extends Migration
                 // $table->foreign('brand_id')->references('id')->on('brands');
 
             $table->integer('quantity')->nullable();
-            $table->integer('cantmin')->nullable();
+            $table->integer('cant_min')->nullable();
             //se hace llamdao al modelo product y las constante y pordefecto borrador
             $table->enum('status',[Product::borrador,Product::publicado])->default(Product::borrador);
             $table->timestamps();

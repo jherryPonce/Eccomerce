@@ -49,7 +49,7 @@ class ProductFactory extends Factory
             'subcategory_id'=> $subcategory->id,
             'brand_id' =>  $brand->id,
             'quantity'=>$quantity,
-            'cantmin'=>$qtymin,
+            'cant_min'=>$qtymin,
             'status'=>2,
             'SKU'=>'id'.$quantity,
             'priceC'=>$this->faker->randomElement([4.00,6.00,9.00]),
