@@ -34,15 +34,18 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/apiadm.php'));
 
+            //Ruta Libre Acceso directo
             Route::middleware('api')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
-             Route::middleware('api','auth','role:') 
+             Route::middleware('api','auth','role:admin') 
                     ->prefix('admin')
                     ->namespace($this->namespace)
                      ->group(base_path('routes/admin.php')) ; 
         });
+
+        
     }
 
     /**

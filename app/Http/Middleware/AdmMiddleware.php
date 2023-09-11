@@ -17,12 +17,14 @@ class AdmMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // Verificar si el usuario tiene el rol de administrador ('admin')
-        if (auth()->check() && auth()->user()->hasRoles('admin')) {
+        
+        if (!auth()->check() /* && auth()->user()->hasRoles('admin') */) {
             return $next($request);
         }
 
         // Si no tiene el rol de administrador, redirigir o retornar una respuesta
-        return redirect()->route('/home')->with('error', 'Acceso denegado');
+        // return redirect('/login'); ;
+
+       
     }
 }

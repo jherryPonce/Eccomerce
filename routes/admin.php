@@ -17,10 +17,6 @@ Route::get('/', function () {
     return 'admin';
 });
 
+// Route::post('/product', [CnfProductsController::class , 'store'])->name('producto.create');
 
-// // Route::GET('/Product', [CnfProductsController::class , 'store'])->name('producto.create');
-Route::prefix('admin')->group(function () {
-    return 'entra';
-    // Route::post('/products', [CnfProductsController::class, 'store']);
-    // Otras rutas para productos en el grupo
-});
+// Route::get('/product', [CnfProductsController::class , 'index'])->name('producto.list');

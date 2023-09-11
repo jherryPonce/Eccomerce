@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
 
          User::create([
             'name'=>'Jherry Ponce Graos',
-            'Dni'=>'7959881',
+            // 'Dni'=>'7959881',
             'email'=>'jponce@unitru.edu.pe',
             'password'=>bcrypt('75959881') 
         ]); 

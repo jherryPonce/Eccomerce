@@ -15,25 +15,21 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->id('idproductos');
             $table->string('name');
             $table->string('slug');
             $table->text('description');
-            $table->float('priceV');
-            $table->float('priceC');
+            $table->float('price');
             $table->string('SKU')->nullable();
-            $table->float('tasaC')->nullable();
-            $table->float('Pdolares')->nullable();
-
-
+            $table->integer('quantity')->nullable();
+            $table->boolean('promocion')->default(0);
             $table->unsignedBigInteger('subcategory_id');
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
 
             $table->unsignedBigInteger('brand_id')->nullable();
                 // $table->foreign('brand_id')->references('id')->on('brands');
 
-            $table->integer('quantity')->nullable();
-            $table->integer('cant_min')->nullable();
+
             //se hace llamdao al modelo product y las constante y pordefecto borrador
             $table->enum('status',[Product::borrador,Product::publicado])->default(Product::borrador);
             $table->timestamps();

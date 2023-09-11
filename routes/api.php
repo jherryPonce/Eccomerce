@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\Admin\CnfProductos\CnfProductsController;
+use App\Http\Controllers\Api\Admin\Activos\CnfProductsController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,13 +19,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return 'api';
 });
-Route::get('/home', function () {
-    return 'home';
-});
+Route::get('/products', [CnfProductsController::class , 'index'])->name('producto.list');
+Route::get('/product/{slug}', [CnfProductsController::class , 'show'])->name('producto.show');
+Route::middleware(['auth'])->group(function(){ 
 
-Route::get('/product', [CnfProductsController::class , 'index'])->name('producto.list');
 
-Route::post('/product', [CnfProductsController::class , 'store'])->name('producto.create');
+    Route::get('/home', function () {
+        return 'home';
+    });
+    Route::post('/register',[AuthController::class, 'register']);
+    
+
+
+
+ });
+ Route::get('/login', function () {
+    return 'logueaste p';
+})->name('login');
 
 // Route::prefix('admin')->group(function () {
 //     return 'entra';

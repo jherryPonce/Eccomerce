@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('Dni')->unique();
+            // $table->string('Dni')->unique();
             $table->string('email')->unique();
          /*    $table->enum('tipoDoc',[User::dni,User::ruc])->default(User::dni); */
             $table->timestamp('email_verified_at')->nullable();

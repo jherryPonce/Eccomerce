@@ -27,16 +27,11 @@ class StoreProductRequest extends FormRequest
             'name'              => 'required|string|max:255',
             'slug'              => 'required',
             'description'       => 'required|string|max:200',
-            'priceV'            => 'required |numeric',
-            'priceC'            => 'required |numeric',
+            'price'            => 'required |numeric',
             'subcategory_id'    => 'required| numeric',
             'brand_id'          => 'numeric',
             'quantity'          => 'numeric',
-            'cant_min'          => 'numeric',
             'SKU'               => 'string',
-            'tasaC'             => 'numeric',
-            'Pdolares'          => 'numeric'
-
         ];
     }
 }
