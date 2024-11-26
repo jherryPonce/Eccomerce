@@ -26,7 +26,8 @@ Route::group(['prefix' => 'v1'], function () {
             Route::group(['prefix' => 'products'], function () {
 
                 Route::get('/', [CnfProductsController::class, 'index']);
-                Route::post('/product/create', [CnfProductsController::class, 'store'])->name('adm.producto.store')->middleware('transaction');
+                Route::get('/{slug}', [CnfProductsController::class, 'show']);
+                Route::post('/create', [CnfProductsController::class, 'store'])->name('adm.producto.store')->middleware('transaction');
                 Route::put('{product}', [CnfProductsController::class, 'update'])->name('adm.producto.update')->middleware('transaction');
                 Route::delete('{product}', [CnfProductsController::class, 'destroy'])->name('adm.producto.destroy')->middleware('transaction');
                 Route::get('export', [CnfProductsController::class, 'export']);

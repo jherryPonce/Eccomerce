@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Exceptions\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
@@ -27,10 +28,7 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         //
-        TokenMissingException::class,
-        InvalidTokenException::class,
-        UnauthorizedRoleException::class,
-        UnauthorizedPermissionException::class,
+       
     ];
 
     /**
@@ -52,18 +50,7 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->renderable(function (Throwable $e, $request) {
-            if ($request->expectsJson()) {
-                if ($e instanceof UnauthorizedException) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'No tienes los permisos necesarios para acceder a este recurso',
-                        'error_code' => 'UNAUTHORIZED_ROLE_OR_PERMISSION',
-                        'details' => $e->getMessage()
-                    ], 403);
-                }
-
-                // ... resto de tus manejadores de excepciones
-            }
+           
         });
     }
 
