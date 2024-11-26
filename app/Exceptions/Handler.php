@@ -3,6 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -23,6 +27,10 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         //
+        TokenMissingException::class,
+        InvalidTokenException::class,
+        UnauthorizedRoleException::class,
+        UnauthorizedPermissionException::class,
     ];
 
     /**
@@ -43,8 +51,76 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (Throwable $e, $request) {
+            if ($request->expectsJson()) {
+                if ($e instanceof UnauthorizedException) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'No tienes los permisos necesarios para acceder a este recurso',
+                        'error_code' => 'UNAUTHORIZED_ROLE_OR_PERMISSION',
+                        'details' => $e->getMessage()
+                    ], 403);
+                }
+
+                // ... resto de tus manejadores de excepciones
+            }
         });
+    }
+
+
+    public function render($request, Throwable $exception): JsonResponse
+    {
+        // Manejo de excepciones personalizadas
+        if ($exception instanceof ProductNotFoundException) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ], $exception->getCode());
+        }
+
+        if ($exception instanceof SubcategoryNotFoundException) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage(),
+            ], $exception->getCode());
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return response()->json([
+                'message' => $exception->getMessage(),
+                'status' => 401
+            ], $exception->getCode());
+        }
+
+        // Manejo de excepciones estándar
+        if ($exception instanceof NotFoundHttpException) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Recurso no encontrado.',
+            ], 404);
+        }
+
+        if ($exception instanceof ValidationException) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Errores de validación.',
+                'errors' => $exception->errors(),
+            ], 422);
+        }
+
+    if ($exception instanceof UnauthorizedException) {
+            return response()->json([
+                'success' => false,
+                'message' => 'NO TIENE LOS PERMISOS NECESARIOS PARA ACCDER A ESTE RECURSO',
+                'error_code' => 'UNAUTHORIZED_ROLE_OR_PERMISSION',
+                'errors' => $exception->getMessage(),
+            ], 401);
+        } 
+        // Excepción genérica para otros errores
+        return response()->json([
+            'success' => false,
+            'message' => 'Error interno del servidor.',
+            'error' => $exception->getMessage(),
+        ], 500);
     }
 }

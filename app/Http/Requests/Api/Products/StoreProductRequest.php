@@ -27,9 +27,9 @@ class StoreProductRequest extends FormRequest
             'name'              => 'required|string|max:255',
             'slug'              => 'required',
             'description'       => 'required|string|max:200',
-            'price'            => 'required |numeric',
-            'subcategory_id'    => 'required| numeric',
-            'brand_id'          => 'numeric',
+            'price'             => 'required |numeric',
+            'subcategory_id'    => 'required| numeric|exists:subcategories,id',
+            'brand_id'          => 'required|numeric|exists:brands,id',
             'quantity'          => 'numeric',
             'SKU'               => 'string',
         ];

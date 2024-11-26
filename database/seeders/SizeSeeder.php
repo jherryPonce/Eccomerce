@@ -36,6 +36,7 @@ class SizeSeeder extends Seeder
             foreach ($sizes as $size) {
                 # code...
                 $product->sizes()->create([
+                    'product_id' => $product->id_productos,
                     'name'=>$size
                     ]);
             }

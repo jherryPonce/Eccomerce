@@ -25,14 +25,14 @@ class DatabaseSeeder extends Seeder
         //databaseseeder es el que se ejecuta
          //en realidad asi que es necesario que este haga el llamado a los de mas seeder pra que se puedan compilar
 
-        $this->call(UserSeeder::class);
-        $this->call(CategorySeeder::class);
-        $this->call(SubcategorySeeder::class);
+        // $this->call(UserSeeder::class);
+        // $this->call(CategorySeeder::class);
+        // $this->call(SubcategorySeeder::class);
 
-        $this->call(ProductSeeder::class);
+        // $this->call(ProductSeeder::class);
 
-        $this->call(ColorSeeder::class);
-        $this->call(ColorProductSeeder::class);
+        // $this->call(ColorSeeder::class);
+        // $this->call(ColorProductSeeder::class);
 
         $this->call(SizeSeeder::class);
         $this->call(ColorSizeSeeder::class);

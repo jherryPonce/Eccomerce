@@ -20,7 +20,7 @@ class CreateAlmacenDetalleTable extends Migration
             $table->string('maximo');
 
             $table->unsignedBigInteger('idProducts');
-            $table->foreign('idProducts')->references('id')->on('products');
+            $table->foreign('idProducts')->references('id_productos')->on('products');
 
             $table->unsignedBigInteger('idAlmacen');
             $table->foreign('idAlmacen')->references('id')->on('stocks');

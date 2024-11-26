@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -15,8 +16,14 @@ class User extends Authenticatable
     use HasRoles;
     use Notifiable;
 
-    const dni=1;
-    const ruc=2;
+    const dni = 1;
+    const ruc = 2;
+
+    // Definir roles como constantes
+    const ROLE_ADMIN = 'admin';
+    const ROLE_CLIENT = 'client';
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,6 +33,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -36,8 +44,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
+
     ];
 
     /**
@@ -49,4 +56,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    // Método para obtener las habilidades según el rol
+  // Método para obtener permisos para el token
+  public function getTokenAbilities()
+  {
+      return $this->getAllPermissions()->pluck('name')->toArray();
+  }
 }

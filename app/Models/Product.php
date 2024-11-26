@@ -51,7 +51,7 @@ class Product extends Model
     //relacion uno a muchos 
     public function sizes()
     {
-        return $this->hasMany(size::class);
+        return $this->hasMany(size::class,'product_id','id_productos' );
     }
 
     //relacion uno a muchos polimorfica

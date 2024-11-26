@@ -80,19 +80,18 @@ class ProductSeeder extends Seeder
         //each(function(Product $product) permite que se trabaje con el modelo product
         // Image::factory(4)->create manda que sean 4 imagenes por producto y asigana los otros valores
         Product::factory(250)->create()->each(function(Product $product ){
-            Kardex::create([
-                'Documento'=>$product->name,
-                'Entrada'=>$product->quantity,
-                'Salida'=>$product->quantity,
-                'PrecioC'=>$product->priceC,
-                'Preciov'=>$product->priceV,
-                'InventarioIni'=>$product->quantity,
-                'InventarioFinal'=>$product->quantity,
-                'idProduct'=>$product->id,
+            // Kardex::create([
+            //     'Documento'=>$product->name,
+            //     'Entrada'=>$product->quantity,
+            //     'Salida'=>$product->quantity,
+            //     'Precio'=>$product->price,
+            //     'InventarioIni'=>$product->quantity,
+            //     'InventarioFinal'=>$product->quantity,
+            //     'idProduct'=>$product->id,
                 
-                /* 'idAlmacen'=>'1',
-                'idMovimiento'=>'2' */
-            ]);
+            //     /* 'idAlmacen'=>'1',
+            //     'idMovimiento'=>'2' */
+            // ]);
             Image::factory(4)->create([
 
                 'Imageable_id'=>$product->id,

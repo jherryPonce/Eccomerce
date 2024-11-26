@@ -25,7 +25,7 @@ class CreateKardexTable extends Migration
 
              
             $table->unsignedBigInteger('idProduct');
-            $table->foreign('idProduct')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('idProduct')->references('id_productos')->on('products')->onDelete('cascade');
 
             /* $table->unsignedBigInteger('idAlmacen');
             $table->foreign('idAlmacen')->references('id')->on('stocks');

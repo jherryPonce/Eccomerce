@@ -20,7 +20,7 @@ class CreateOrdenesTable extends Migration
             $table->foreign('codpedidos')->references('id')->on('pedidos');
 
             $table->unsignedBigInteger('codproducts');
-            $table->foreign('codproducts')->references('id')->on('products');
+            $table->foreign('codproducts')->references('id_productos')->on('products');
 
             $table->unsignedBigInteger('unidades');
             $table->unsignedDouble('importe');

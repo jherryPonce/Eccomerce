@@ -34,25 +34,23 @@ class ProductFactory extends Factory
         //se condiciona para saber si el producto a regiustarr necesita que la cantidad vala en la tabla colo_product o a product
         if($subcategory->color){
             $quantity=null;
-            $qtymin=null;
+
         }
         else{
             $quantity=15;
-            $qtymin=5;
         }
 
         return [
             'name'=>$name,
             'slug'=> Str::slug($name),
             'description'=>$this->faker->text(),
-            'priceV'=>$this->faker->randomElement([11.99,17.99,26.99]),
+            'price'=>$this->faker->randomElement([11.99,17.99,26.99]),
             'subcategory_id'=> $subcategory->id,
             'brand_id' =>  $brand->id,
             'quantity'=>$quantity,
-            'cant_min'=>$qtymin,
             'status'=>2,
             'SKU'=>'id'.$quantity,
-            'priceC'=>$this->faker->randomElement([4.00,6.00,9.00]),
+
           
         ];
     }
